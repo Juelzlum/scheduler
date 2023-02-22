@@ -1,14 +1,17 @@
 import React from "react";
 import InterviewerListItem from "./InterviewListItem";
 import "components/InterviewList.scss"
-import DayList from "./DayList";
+
 
 export default function InterviewList (props) {
   const interviewers = props.interviewers.map((interviewer) => 
     <InterviewerListItem
     key = {interviewer.id}
-    name= {interviewer.name}
+    name = {interviewer.name}
     avatar = {interviewer.avatar}
+    selected = {interviewer.id === value}
+    setInterviewer={() => onChange(interviewer.id)}
+
     />
   )
   

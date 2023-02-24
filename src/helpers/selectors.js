@@ -29,11 +29,9 @@ const state = {
     }
   }
 };
-const getAppointmentsForDay =(state, day) => {
-  //state.day === day
-  //state.appointments - for appointments 
+export const getAppointmentsForDay =(state, day) => { 
   const filteredDay = state.days.filter(word => word.name === day)
-  // console.log(filteredDay)
+  
   let output = []
   if(!filteredDay[0]) return output;
   for(const appt of filteredDay[0].appointments){
@@ -43,6 +41,7 @@ return output
 
 }
 
-// console.log(getAppointmentsForDay(state, 'Monday'))
 
-// export default getAppointmentsForDay
+export const getInterview = (state, interview) => {
+
+}

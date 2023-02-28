@@ -16,8 +16,4 @@ return(
 
 export default Confirm
 
-// .add("Confirm", () => <Confirm
-// message = 'Delete the appointment?'
-// onConfirm = {action('onConfirm')}
-// onCancel = {action('onCancel')}
-// />)
+

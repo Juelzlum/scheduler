@@ -4,6 +4,9 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";  
+import Status from "./Status";
+import Confirm from "./Confirm";
+
 import useVisualMode from "hooks/useVisualMode";
 
 
@@ -11,10 +14,14 @@ import useVisualMode from "hooks/useVisualMode";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE"
+const SAVING = "SAVING"
+const CONFIRM = "CONFIRM"
+const DELETING = "DELETING"
+const EDIT = "EDIT"
 
 
 const Appointment = (props) => {
-  console.log('interview1', props.interview)
+  // console.log('interview1', props.interview)
 
 
   const { mode, transition, back } = useVisualMode(
@@ -29,9 +36,19 @@ const Appointment = (props) => {
     };
     transition(SAVING)
     props.bookInterview(props.id, interview)
-    transition(SHOW)
+    .then(()=> 
+    {transition(SHOW)})
+    
   }
   
+  const deleteAppointment = () => {
+    transition(DELETING)
+    props.cancelInterview(props.id)
+    .then(()=> {
+      transition(EMPTY)
+    })
+
+  }
 
   // console.log('appointment_props', props)
 
@@ -44,18 +61,43 @@ const Appointment = (props) => {
           name={props.interview.student}
           interviewer={props.interview.interviewer}
           bookInterview= { props.bookInterview}
+          onDelete={(()=> {transition(CONFIRM)})}
         />
       )}
       {mode === CREATE && (
         <Form
         interviewers={props.interviewers}
-        onCancel= {back}
-        onSave = {save}
+        onCancel={back}
+        onSave={save}
         />
       )}
       {mode === SAVING && (
-        <Status/>
+        <Status 
+         message="Saving" 
+         />
       )}
+      {mode === CONFIRM && (
+        <Confirm
+        message='Are you sure you want to delete?'
+        onConfirm={deleteAppointment}
+        onCancel={back}
+        />
+      )}
+      {mode === DELETING && (
+        <Status
+        message="Deleting"/>
+      )}
+      {mode === EDIT && (
+        <Form
+        name={props.interview.student}
+        interviewer={props.interview.interviewer}
+        onCancel= {back}
+        onSave={save}
+
+        />
+        
+      )}
+
     </article>
 
   );

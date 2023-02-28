@@ -21,3 +21,16 @@ export const getInterview = (state, interview) => {
   return null; 
 
 }
+
+
+export const getInterviewersForDay =(state, day) => { 
+  const filteredDay = state.days.filter(word => word.name === day)
+
+  let output = []
+  if(!filteredDay[0]) return output;
+  for(const interviewer of filteredDay[0].interviewers){
+    output.push(state.interviewers[interviewer])
+  }
+return output
+
+}

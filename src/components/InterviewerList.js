@@ -4,6 +4,8 @@ import "components/InterviewList.scss"
 
 
 export default function InterviewList (props) {
+  // console.log('props', props)
+  // console.log( 'props.interviewers', props.interviewers) 
   const interviewers = props.interviewers.map((interviewer) => 
     <InterviewerListItem
     key = {interviewer.id}
@@ -15,7 +17,7 @@ export default function InterviewList (props) {
     />
   )
   
-  return (  //to review 
+  return (
     <section className="interviewers">
   <h4 className="interviewers__header text--light">Interviewer</h4>
   <ul className="interviewers__list">

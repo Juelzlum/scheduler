@@ -61,7 +61,9 @@ const Appointment = (props) => {
           name={props.interview.student}
           interviewer={props.interview.interviewer}
           bookInterview= { props.bookInterview}
-          onDelete={(()=> {transition(CONFIRM)})}
+          onDelete={(()=> transition(CONFIRM))}
+          onEdit={(()=> transition(EDIT))}
+
         />
       )}
       {mode === CREATE && (
@@ -90,7 +92,7 @@ const Appointment = (props) => {
       {mode === EDIT && (
         <Form
         name={props.interview.student}
-        interviewer={props.interview.interviewer}
+        interviewers={props.interviewers}
         onCancel= {back}
         onSave={save}
 

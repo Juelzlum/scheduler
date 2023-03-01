@@ -2,6 +2,8 @@ import axios from "axios"
 import { useEffect, useState} from "react"
 
 export default function useApplicationData() {
+
+
   
   const [state,setState] = useState({
     day: 'Monday',
@@ -9,6 +11,21 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {}
   })
+
+  const numOfSpots = (id, appointments, modifier) => {
+    const dayArr = [...state.days]
+
+  
+    return dayArr.map((day)=> {
+      for(let appointment of day.appointments) {
+        if(appointment === id) {
+          day.spots += modifier
+        }
+      }
+      return day
+    })
+
+  }
 
    const setDay = day => setState({ ...state, day });
 
@@ -27,7 +44,8 @@ export default function useApplicationData() {
     .then(() => {
       setState({
         ...state,
-        appointments
+        appointments,
+        days: numOfSpots(id, appointments, -1)
       });
     })
     // console.log(id, interview);
@@ -45,7 +63,8 @@ export default function useApplicationData() {
     .delete(`/api/appointments/${id}`)
     .then(()=> { setState({
       ...state,
-      appointments
+      appointments,
+      days: numOfSpots(id, appointments, 1)
     })
     })
   }

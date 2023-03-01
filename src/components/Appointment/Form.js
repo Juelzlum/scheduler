@@ -5,6 +5,7 @@ import Button from 'components/Button';
 const Form = (props) => {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
   
   const reset = () =>{
     setName("")
@@ -13,6 +14,19 @@ const Form = (props) => {
   const cancel =() => {
     reset()
     props.onCancel()
+  }
+
+  function validate() {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+  
+    props.onSave(name, interviewer);
   }
   // console.log('form_props', props)
   return(
@@ -27,6 +41,7 @@ const Form = (props) => {
         value={name}
         onChange={(event) => setName(event.target.value)}
       />
+      <section className="appointment__validation">{error}</section>
     </form>
     <InterviewerList 
        interviewers={props.interviewers} 
@@ -37,7 +52,7 @@ const Form = (props) => {
   <section className="appointment__card-right">
     <section className="appointment__actions">
       <Button danger onClick= {cancel}>Cancel</Button>
-      <Button confirm onClick= {()=>props.onSave(name, interviewer)}>Save</Button>
+      <Button confirm onClick= {validate}>Save</Button>
     </section>
   </section>
 </main>

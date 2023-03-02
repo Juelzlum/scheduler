@@ -12,20 +12,25 @@ export default function useApplicationData() {
     interviewers: {}
   })
 
-  const numOfSpots = (id, appointments, modifier) => {
-    const dayArr = [...state.days]
-
+  const numOfSpots = (state, appointments, id) => {
+    const dayObj = state.days.find(d => d.name === state.day)
+   
   
-    return dayArr.map((day)=> {
-      for(let appointment of day.appointments) {
-        if(appointment === id) {
-          day.spots += modifier
-        }
-      }
-      return day
-    })
-
+  let spots = 0
+  
+  for(const id of dayObj.appointments) {
+    const appointment = appointments[id]
+    if(!appointment.interview) {
+      spots++
+    }
   }
+  
+  const day = {...dayObj, spots}
+  const days = state.days.map(d => d.name === state.day ? day : d)
+  
+    return days
+  }
+  
 
    const setDay = day => setState({ ...state, day });
 
@@ -45,7 +50,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        days: numOfSpots(id, appointments, -1)
+        days: numOfSpots(state, appointments, id)
       });
     })
     // console.log(id, interview);
@@ -64,7 +69,7 @@ export default function useApplicationData() {
     .then(()=> { setState({
       ...state,
       appointments,
-      days: numOfSpots(id, appointments, 1)
+      days: numOfSpots(state, appointments, id)
     })
     })
   }

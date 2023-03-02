@@ -34,6 +34,7 @@ const Form = (props) => {
   <section className="appointment__card-left">
     <form onSubmit={event => event.preventDefault()}>
       <input
+        data-testid="student-name-input"
         className="appointment__create-input text--semi-bold"
         name={props.name}
         type="text"

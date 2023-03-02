@@ -1,5 +1,6 @@
 // import Status from "components/Appointment/Status";
 
+// getting the array of appoinments for the given day 
 export const getAppointmentsForDay =(state, day) => { 
   const filteredDay = state.days.filter(word => word.name === day)
   
@@ -12,7 +13,7 @@ return output
 
 }
 
-
+// returns an object for an interview
 export const getInterview = (state, interview) => {
   if(interview) {
     const interviewer = state.interviewers[interview.interviewer]
@@ -22,7 +23,7 @@ export const getInterview = (state, interview) => {
 
 }
 
-
+// getting the array of interviewer for the given day 
 export const getInterviewersForDay =(state, day) => { 
   const filteredDay = state.days.filter(word => word.name === day)
 

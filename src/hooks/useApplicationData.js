@@ -4,7 +4,6 @@ import { useEffect, useState} from "react"
 export default function useApplicationData() {
 
 
-  
   const [state,setState] = useState({
     day: 'Monday',
     days: [],
@@ -12,6 +11,7 @@ export default function useApplicationData() {
     interviewers: {}
   })
 
+  //function that update the spot after making an appointment
   const numOfSpots = (state, appointments, id) => {
     const dayObj = state.days.find(d => d.name === state.day)
    
@@ -34,6 +34,7 @@ export default function useApplicationData() {
 
    const setDay = day => setState({ ...state, day });
 
+   //function that books appointments
    function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -53,8 +54,8 @@ export default function useApplicationData() {
         days: numOfSpots(state, appointments, id)
       });
     })
-    // console.log(id, interview);
   }
+  // function that cancels appointments
    function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -73,6 +74,8 @@ export default function useApplicationData() {
     })
     })
   }
+
+  //extracting data from api to transfer to frontend 
   useEffect(()=>{
     Promise.all([
       axios.get( '/api/days'),
@@ -80,7 +83,7 @@ export default function useApplicationData() {
       axios.get( '/api/interviewers')
     ])
     .then((all) => {
-      // console.log(all[2].data)
+      
       setState(prev => ({
         ...prev, days: all[0].data, 
         appointments: all[1].data, 

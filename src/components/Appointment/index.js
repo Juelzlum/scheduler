@@ -22,14 +22,14 @@ const ERROR_SAVE = "ERROR_SAVE"
 const ERROR_DELETE= "ERROR_DELETE"
 
 const Appointment = (props) => {
-  // console.log('interview1', props.interview)
 
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer) {
+  // creating saving an appt with a promise
+  const save = (name, interviewer) => {
     
     const interview = {
       student: name,
@@ -44,7 +44,8 @@ const Appointment = (props) => {
     })
     
   }
-  
+
+  //deleting an appointment with a promise 
   const deleteAppointment = () => {
     transition(DELETING)
     props.cancelInterview(props.id)

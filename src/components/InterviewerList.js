@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 
 
 export default function InterviewerList (props) {
-  // console.log('props', props)
-  // console.log( 'props.interviewers', props.interviewers) 
+
   const interviewers = props.interviewers.map((interviewer) => 
     <InterviewerListItem
     key = {interviewer.id}
@@ -18,7 +17,7 @@ export default function InterviewerList (props) {
 
     />
   )
-  
+
   return (
     <section className="interviewers">
   <h4 className="interviewers__header text--light">Interviewer</h4>

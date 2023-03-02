@@ -16,9 +16,9 @@ export default function Application(props) {
     cancelInterview
    ] = useApplicationData();
 
-   console.log('state.days,', state.days)
-   console.log('state,', state)
-   
+  //  console.log('state.days,', state.days)
+  //  console.log('state,', state)
+
   // const [state,setState] = useState({
   //   day: 'Monday',
   //   days: [],

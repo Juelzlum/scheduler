@@ -80,6 +80,13 @@ export default {
         data: fixtures.interviewers
       })
     }
-    return Promise.resolve({data: {}})
+  }),
+  put: jest.fn(url=> {
+    if(url === '/api/appointments/') {
+      return Promise.resolve({
+        status: 204, 
+        statusText: "No Content" 
+      })
+    }
   })
 }

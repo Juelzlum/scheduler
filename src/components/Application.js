@@ -8,7 +8,7 @@ import useApplicationData from "hooks/useApplicationData";
 
 
 export default function Application(props) {
-
+  
   const [
     state,
     setDay,
@@ -16,6 +16,9 @@ export default function Application(props) {
     cancelInterview
    ] = useApplicationData();
 
+   console.log('state.days,', state.days)
+   console.log('state,', state)
+   
   // const [state,setState] = useState({
   //   day: 'Monday',
   //   days: [],

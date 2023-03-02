@@ -1,9 +1,9 @@
 # Interview Scheduler
-## ScreenShots
 
-!["Screenshot Description"] (https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Layout.png)
-!["Screenshot Description"] (https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Form%20.png)
-!["Screenshot Description"] (https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Add%20appointments.png)
+## Screenshots
+!["Layout of the Interview Scheduler"](https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Layout.png)
+!["Creation of the form when add is clicked"](https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Form%20.png)
+!["Appointments added in"](https://github.com/Juelzlum/scheduler/blob/master/public/images/Screenshots/Add%20appointments.png)
 
 ## Setup
 

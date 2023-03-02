@@ -1,8 +1,9 @@
 import React from "react";
 
-import { render, cleanup, waitForElement,fireEvent, prettyDOM, getAllByTestId, getByText, getByAltText, getByPlaceholderText,queryByText, queryByAltText} from "@testing-library/react";
+import { render, cleanup, waitForElement,fireEvent, prettyDOM, getAllByTestId, getByText, getByAltText, getByPlaceholderText,queryByText, queryByAltText, getAllByAltText} from "@testing-library/react";
 
 import Application from "components/Application";
+import axios from "axios";
 
 afterEach(cleanup);
 
@@ -25,6 +26,7 @@ describe("Application", () => {
     const appointments = getAllByTestId(container, "appointment");
   // console.log(prettyDOM(appointments));
   const appointment = getAllByTestId(container, "appointment")[0];
+
 
     fireEvent.click(getByAltText(appointment, "Add"));
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
@@ -71,5 +73,33 @@ describe("Application", () => {
    )
    expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
+
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    const { container } = render(<Application/>)
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointment = getAllByTestId(container, "appointment")[1];
+    fireEvent.click(getByAltText(appointment, "Edit"))
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    fireEvent.click(getByAltText(appointment, "Tori Malcolm"))
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+     )
+     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+   
+  })
+  it("shows the save error when failing to save an appointment", async () => {
+    axios.put.mockRejectedValueOnce()
+  })
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    axios.delete.mockRejectedValueOnce()
+  })
   
 })
+

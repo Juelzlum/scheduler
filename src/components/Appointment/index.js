@@ -1,5 +1,5 @@
 import React from "react";
-import '/Users/juelz/lighthouse/scheduler/src/components/Appointment/styles.scss';
+import '../Appointment/styles.scss';
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -100,6 +100,7 @@ const Appointment = (props) => {
       {mode === EDIT && (
         <Form
         name={props.interview.student}
+        interviewer={props.interview.interviewer.id}
         interviewers={props.interviewers}
         onCancel= {back}
         onSave={save}

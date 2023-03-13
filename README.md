@@ -53,13 +53,23 @@ For full functionality both must run concurrently: the client and the API server
 *Storybook/addon-actions
 
 *Storybook/addon-backgrounds
+
 *Storybook/addon-links
+
 *Storybook/addons
+
 *Storybook/react
+
 *Testing-library/jest-dom
+
 *Testing-library/react
+
 *Testing-library/react-hooks
+
 *Babel-loader
+
 *Node-sass
+
 *Prop-types
+
 *React-test-renderer

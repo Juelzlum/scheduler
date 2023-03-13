@@ -58,14 +58,12 @@ const Appointment = (props) => {
     .then(()=> {
       transition(EMPTY)
     })
-    .catch((error)=> {
-      transition(ERROR_DELETE,true)
-    })
-
+    .catch(error=> 
+      transition(ERROR_DELETE, true))
+    
   }
 
-  // console.log('appointment_props', props)
-
+  
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
@@ -99,10 +97,12 @@ const Appointment = (props) => {
         onCancel={back}
         />
       )}
+
       {mode === DELETING && (
         <Status
         message="Deleting"/>
       )}
+
       {mode === EDIT && (
         <Form
         name={props.interview.student}
@@ -120,7 +120,7 @@ const Appointment = (props) => {
       }
       {mode === ERROR_DELETE && 
       <Error
-      message="Could Not Save Appointment"
+      message="Could Not Delete Appointment"
       onClose={back}
       />
       }

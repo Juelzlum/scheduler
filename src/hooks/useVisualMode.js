@@ -9,7 +9,7 @@ export default function useVisualMode(initial) {
   const transition = (newMode, replace = false ) => {
     setMode(newMode);
     if(replace) {
-      setHistory((prev)=> [...prev.splice(0, history.length -1), newMode])
+      setHistory((prev)=> [...prev.splice(0, prev.length -1), newMode])
     }
     else{
     setHistory((prev) => [...prev, newMode]);
@@ -17,7 +17,7 @@ export default function useVisualMode(initial) {
   }
   const back = () => {
       setMode(history[history.length - 2])
-      setHistory((prev)=> [...prev.splice(0, history.length -1)])
+      setHistory((prev)=> [...prev.splice(0, prev.length -1)])
 
   }
 

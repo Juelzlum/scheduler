@@ -21,7 +21,7 @@ npm start
 npm test
 ```
 
-### API/Database Setup
+## API/Database Setup
 
 For full functionality both must run concurrently: the client and the API server applications.
 
@@ -35,7 +35,7 @@ For full functionality both must run concurrently: the client and the API server
 
 *Once you have the database setup and the scheduler-api server running, run the following command from the root directory of the project npm start
 
-### Dependencies
+## Dependencies
 *Axios
 
 *Classnames

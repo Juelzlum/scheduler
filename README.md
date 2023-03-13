@@ -35,5 +35,31 @@ For full functionality both must run concurrently: the client and the API server
 
 *Once you have the database setup and the scheduler-api server running, run the following command from the root directory of the project npm start
 
+### Dependencies
+*Axios
 
+*Classnames
 
+*Normalize.css
+
+*React
+
+*React-dom
+
+*React-scripts
+
+*Babel/core
+
+*Storybook/addon-actions
+
+*Storybook/addon-backgrounds
+*Storybook/addon-links
+*Storybook/addons
+*Storybook/react
+*Testing-library/jest-dom
+*Testing-library/react
+*Testing-library/react-hooks
+*Babel-loader
+*Node-sass
+*Prop-types
+*React-test-renderer
